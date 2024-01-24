@@ -1,6 +1,10 @@
-if 5 > 2:
-    print("Five is greater than two!")
-if 5 > 2:
-    print("Five is greater than two!")
-if 5 > 2:
-        print("Five is greater than two!")
+#Ex.1
+#This is a comment
+
+#Ex.2
+"""
+This is a comment
+written in
+more than just one line
+"""
+print("Hello, World!")
