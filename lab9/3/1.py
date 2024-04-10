@@ -1,18 +1,20 @@
+
 import pygame
 
 pygame.init()
 
-
+# цвета
 black = (0, 0, 0)
 white = (255, 255, 255)
 green = (0, 255, 0)
 blue_green = (182, 242, 114)
 icon_rectangle_tab_color = (255, 0, 0)
 
-
+# размеры экрана
 dis_width = 600
 dis_height = 400
 
+# экрана
 dis = pygame.display.set_mode((dis_width, dis_height))
 pygame.display.set_caption('Paint')
 
@@ -22,6 +24,7 @@ elements_to_draw = []
 
 
 def drawShapes(mainscreen):
+    """Функция для рисования"""
     for element in elements_to_draw:
         if element['shape'] == 'SQUARE':
             pygame.draw.rect(mainscreen, element['color'],
@@ -37,6 +40,7 @@ def drawShapes(mainscreen):
 
 
 def drawMainIcons(mainscreen):
+    """Функция для рисования"""
     pygame.draw.circle(mainscreen, green, (30, 90), 20)
     pygame.draw.polygon(mainscreen, blue_green,
                         [(30, 150), (50, 200), (10, 200)])
