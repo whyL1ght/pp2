@@ -2,12 +2,16 @@ import pygame
 
 pygame.init()
 
-music_file = "1.mp3"
-pygame.mixer.music.load(music_file)
+music_files = ["1.mp3", "2.mp3"]
+
+current_song_index = 0
 
 WINDOW_WIDTH, WINDOW_HEIGHT = 400, 300
 window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-pygame.display.set_caption("Music")
+pygame.display.set_caption("Music Player")
+
+pygame.mixer.music.load(music_files[current_song_index])
+pygame.mixer.music.play()
 
 running = True
 while running:
@@ -22,6 +26,10 @@ while running:
                     pygame.mixer.music.unpause()
             elif event.key == pygame.K_s:
                 pygame.mixer.music.stop()
+            elif event.key == pygame.K_RIGHT:
+                current_song_index = (current_song_index + 1) % len(music_files)
+                pygame.mixer.music.load(music_files[current_song_index])
+                pygame.mixer.music.play()
 
     pygame.display.update()
 

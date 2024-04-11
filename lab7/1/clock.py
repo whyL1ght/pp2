@@ -2,6 +2,7 @@ import pygame
 import sys
 from datetime import datetime
 import math
+import time
 
 pygame.init()
 WIDTH, HEIGHT = 849, 833
@@ -16,20 +17,25 @@ while True:
             sys.exit()
 
     now_time = datetime.now()
-    h, m = now_time.hour, now_time.minute
+    h, m, s = now_time.hour, now_time.minute, now_time.second
     screen.blit(clock_img, (0, 0))
 
-    a_h = (h % 12 + m / 60) * 360 / 12
-    a_m = m * 360 / 60
+    a_h = ((h % 12 + m / 60 + s / 3600) * 360 / 12)
+    a_m = ((m + s / 60) * 360 / 60)   
+    a_s = (s * 360 / 60)
+    h_l = 180
+    m_l = 240
+    s_l = 320
+    h_x = 424 + h_l * math.cos(math.radians(90 - a_h))
+    h_y = 416 - h_l * math.sin(math.radians(90 - a_h))
+    m_x = 424 + m_l * math.cos(math.radians(90 - a_m))
+    m_y = 416 - m_l * math.sin(math.radians(90 - a_m))
+    s_x = 424 + s_l * math.cos(math.radians(90 - a_s))
+    s_y = 416 - s_l * math.sin(math.radians(90 - a_s))
 
-    h_l = 80
-    m_l = 110
-    h_x = 200 + h_l * math.cos(math.radians(90 - a_h))
-    h_y = 200 - h_l * math.sin(math.radians(90 - a_h))
-    m_x = 200 + m_l * math.cos(math.radians(90 - a_m))
-    m_y = 200 - m_l * math.sin(math.radians(90 - a_m))
-
-    pygame.draw.line(screen, (0, 0, 0), (424, 416), (h_x, h_y), 8)
-    pygame.draw.line(screen, (255, 0, 0), (424, 416), (m_x, m_y), 4)
+    pygame.draw.line(screen, (0, 0, 0), (426, 416), (h_x, h_y), 16)
+    pygame.draw.line(screen, (255, 0, 0), (426, 416), (m_x, m_y), 8)
+    pygame.draw.line(screen, (0, 0, 255), (426, 416), (s_x, s_y), 4)
 
     pygame.display.flip()
+    time.sleep(1)
